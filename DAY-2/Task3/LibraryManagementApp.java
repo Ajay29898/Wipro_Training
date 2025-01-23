@@ -57,7 +57,7 @@ class LibraryManagement
         String author = scanner.nextLine();
         System.out.print("Enter Number of Copies: ");
         int copies = scanner.nextInt();
-        scanner.nextLine();  // Consume newline
+        scanner.nextLine();  
         books.add(new Book(bookId, title, author, copies));
         System.out.println("Book added successfully.");
     }
@@ -149,7 +149,7 @@ class LibraryManagement
             System.out.println("7. Exit");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine(); 
 
             switch (choice) 
             {
