@@ -1,20 +1,11 @@
-// This program implements a Student Grade Management System allowing the management of students, courses, and grades. 
-// It supports operations like adding students and courses, assigning grades, viewing student details with GPAs, and listing available courses
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-
-// Represents a student and manages their grades for courses.Stores and processes information about individual students.
-// purpose of the class is to tracks courses and grades for each student.
 
 class Student         
 {
     String studentId;
     String name;
-
-//  A HashMap that stores grades for each course.Each Student object has a separate courseGrades object which stores grades for each courses.
-
     HashMap<Course, Grade> courseGrades = new HashMap<>();    
                                                               
     public Student(String studentId, String name)             
@@ -23,17 +14,17 @@ class Student
         this.name = name;
     }
 
-    public void assignGrade(Course course, Grade grade)    // Adds a grade for a specific course in the courseGrades map
+    public void assignGrade(Course course, Grade grade)  
     {
         courseGrades.put(course, grade);
         System.out.println("Grade assigned: " + grade.letterGrade + " for course: " + course.courseName);
     }
 
-    public double calculateGPA()        // Calculates the student's Grade Point Average (GPA) as the average of all grade points in courseGrades
+    public double calculateGPA()    
     {
         if (courseGrades.isEmpty())    
         {                               
-            return 0.0;                 // Returns 0.0 if the student has no grades.
+            return 0.0;                 
         }
         double totalGradePoints = 0.0;
         int totalCourses = courseGrades.size();
@@ -52,7 +43,7 @@ class Student
     }
 }
 
-class Course                  // Represents a course that students can take.Purpose of a class is to Encapsulate the information about a course.
+class Course                  
 {
     String courseId;
     String courseName;
@@ -70,25 +61,25 @@ class Course                  // Represents a course that students can take.Purp
     }
 }
 
-class Grade                       // Represents the grade for a student in a course.Links a course and student to the grade they achieved
+class Grade                   
 {
     String letterGrade;
     double gradePoint;
 
     public Grade(String letterGrade, double gradePoint) 
     {
-        this.letterGrade = letterGrade;         // The letter representation of the grade (e.g., A, B, C).
-        this.gradePoint = gradePoint;           //  The numeric representation of the grade (e.g., A = 4.0, B = 3.0).
+        this.letterGrade = letterGrade;        
+        this.gradePoint = gradePoint;        
     }
 }
 
-public class GradeManagementSystem              // Provides the user interface and core functionality for managing the overall system
+public class GradeManagementSystem            
 {
     ArrayList<Student> students = new ArrayList<>();
     ArrayList<Course> courses = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public void addStudent()                   // Stores all student records.
+    public void addStudent()           
     {
         System.out.print("Enter Student ID: ");
         String studentId = scanner.nextLine();
@@ -98,7 +89,7 @@ public class GradeManagementSystem              // Provides the user interface a
         System.out.println("Student added successfully.");
     }
 
-    public void addCourse()                 // Stores all course records
+    public void addCourse()         
     {
         System.out.print("Enter Course ID: ");
         String courseId = scanner.nextLine();
@@ -108,7 +99,7 @@ public class GradeManagementSystem              // Provides the user interface a
         System.out.println("Course added successfully.");
     }
 
-    public Student findStudent(String studentId)        // Prompts the user for student details and adds a new Student object to the students list.
+    public Student findStudent(String studentId)        
     {
         for (Student student : students) 
         {
@@ -121,7 +112,7 @@ public class GradeManagementSystem              // Provides the user interface a
         return null;
     }
 
-    public Course findCourse(String courseId)           // Prompts the user for course details and adds a new Course object to the courses list.
+    public Course findCourse(String courseId)         
     {
         for (Course course : courses) 
         {
@@ -133,9 +124,6 @@ public class GradeManagementSystem              // Provides the user interface a
         System.out.println("Course not found.");
         return null;
     }
-
-    // Prompts(Ask to enter) the user for the student ID and course ID, then finds the respective Student and Course objects.
-    // Asks for a letter grade, converts it to a grade point using convertGradeToPoint(), and assigns the grade to the student.
 
     public void assignGrade()          
     {
