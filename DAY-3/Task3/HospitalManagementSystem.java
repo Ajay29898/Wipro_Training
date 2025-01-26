@@ -1,11 +1,7 @@
-// Hospital Management System  provides functionality for managing patients, doctors, and appointments. Users can add patients and doctors, 
-// schedule appointments, and view appointment details.The system is structured around three main classes: Patient, Doctor, and Appointment, 
-// with a management class HospitalManagementSystem that ties them together.
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Patient        // Represents a patient in the hospital system.
+class Patient    
 {
     String patientId;
     String name;
@@ -27,7 +23,7 @@ class Patient        // Represents a patient in the hospital system.
     }
 }
 
-class Doctor         // Represents a doctor in the hospital system.
+class Doctor    
 {
     String doctorId;
     String name;
@@ -47,7 +43,7 @@ class Doctor         // Represents a doctor in the hospital system.
     }
 }
 
-class Appointment             // Represents an appointment between a patient and a doctor on a specific date.
+class Appointment
 {
     Patient patient;
     Doctor doctor;
@@ -70,14 +66,14 @@ class Appointment             // Represents an appointment between a patient and
     }
 }
 
-public class HospitalManagementSystem     // This class serves as the backbone of the program, managing the main operations.
+public class HospitalManagementSystem     
 {
-    ArrayList<Patient> patients = new ArrayList<>();                 //  A list of registered patients
-    ArrayList<Doctor> doctors = new ArrayList<>();                   //   A list of registered doctors
-    ArrayList<Appointment> appointments = new ArrayList<>();         //   A list of scheduled appointments
+    ArrayList<Patient> patients = new ArrayList<>();                
+    ArrayList<Doctor> doctors = new ArrayList<>();                
+    ArrayList<Appointment> appointments = new ArrayList<>();         
     Scanner scanner = new Scanner(System.in);
 
-    public void addPatient()            //  Prompts the user to enter patient details and adds the patient to the patients list
+    public void addPatient()            
     {
         System.out.print("Enter Patient ID: ");
         String patientId = scanner.nextLine();
@@ -93,7 +89,7 @@ public class HospitalManagementSystem     // This class serves as the backbone o
         System.out.println("Patient added successfully.");
     }
 
-    public void addDoctor()             // Prompts the user to enter doctor details and adds the doctor to the doctors list.
+    public void addDoctor()            
     {
         System.out.print("Enter Doctor ID: ");
         String doctorId = scanner.nextLine();
@@ -105,10 +101,7 @@ public class HospitalManagementSystem     // This class serves as the backbone o
         doctors.add(new Doctor(doctorId, name, specialization));
         System.out.println("Doctor added successfully.");
     }
-
-    // Prompts for a patient ID and doctor ID.Validates both IDs using the findPatient() and findDoctor() methods.
-    //If valid, schedules an appointment and adds it to the appointments list
-
+    
     public void scheduleAppointment()  
     {
         System.out.print("Enter Patient ID: ");
