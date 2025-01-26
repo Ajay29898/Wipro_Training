@@ -1,16 +1,12 @@
-// This program implements an Online Quiz System in Java that allows administrators to add questions, users to take quizzes,and everyone 
-// to view results. It uses object-oriented principles to manage questions, track user scores, and provide an interactive interface
-// The system is structured into three main classes: Question, Quiz, and the main class QuizApplication.
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-class Question        // Represents a quiz question with multiple-choice options.
+class Question        
 {
     String questionText;
     String[] options;
-    int correctOption;            //An integer indicating the correct option (1-based index).
+    int correctOption;         
 
     public Question(String questionText, String[] options, int correctOption) 
     {
@@ -25,19 +21,16 @@ class Question        // Represents a quiz question with multiple-choice options
         StringBuilder display = new StringBuilder(questionText + "\n");
         for (int i = 0; i < options.length; i++) 
         {
-            display.append((i + 1)).append(". ").append(options[i]).append("\n");   // options are 1 based indexing
+            display.append((i + 1)).append(". ").append(options[i]).append("\n");   
         }
         return display.toString();
     }
 }
 
-class Quiz      // Handles the core quiz functionality, including adding questions, conducting quizzes, and viewing results.
+class Quiz      
 {
-    ArrayList<Question> questions = new ArrayList<>();           // A list of Question objects representing the quiz questions. 
-    HashMap<String, Integer> userScores = new HashMap<>();       // A map that associates user names with their scores.
-
-    // Prompts the admin to enter the question text.Asks for the number of options and reads each option.
-    // Specifies the correct option by its number.Adds the question to the questions list.
+    ArrayList<Question> questions = new ArrayList<>();            
+    HashMap<String, Integer> userScores = new HashMap<>();     
 
     public void addQuestion() 
     {
@@ -63,9 +56,6 @@ class Quiz      // Handles the core quiz functionality, including adding questio
         questions.add(question);
         System.out.println("Question added successfully.");
     }
-
-    // Checks if there are questions available. If not, displays an appropriate message.Displays each question using its toString() method.
-    // Collects the user's answer and checks if it matches the correct option.Tracks the score and stores it in the userScores map for the user.
 
     public void takeQuiz(String userName) 
     {
@@ -100,8 +90,7 @@ class Quiz      // Handles the core quiz functionality, including adding questio
         userScores.put(userName, score);
         System.out.println(userName + ", your quiz is complete! Your score: " + score + "/" + questions.size());
     }
-
-    // Checks if there are any scores available. If not, shows a message.Iterates through the userScores map and displays each user's score.
+    
     public void viewResults() 
     {
         if (userScores.isEmpty()) 
