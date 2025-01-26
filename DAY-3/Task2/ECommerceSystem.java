@@ -1,11 +1,7 @@
-// This program implements an E-Commerce Product Management System in Java that provides functionality to manage products, customers, and orders. 
-// Users can perform tasks such as adding/removing products, registering customers, creating orders, viewing order history, 
-// and saving order details to a file.
-
 import java.io.*;
 import java.util.*;
 
-class Product                  // Represents a product in the e-commerce system.
+class Product              
 {
     String productId;
     String name;
@@ -25,7 +21,7 @@ class Product                  // Represents a product in the e-commerce system.
     }
 }
 
-class Customer                 // Represents a customer in the e-commerce system.
+class Customer               
 {
     String customerId;
     String name;
@@ -43,7 +39,7 @@ class Customer                 // Represents a customer in the e-commerce system
     }
 }
 
-class Order                   // Represents an order placed by a customer.
+class Order               
 {
     Customer customer;
     List<Product> products = new ArrayList<>();
@@ -60,9 +56,6 @@ class Order                   // Represents an order placed by a customer.
         totalCost += product.price;
     }
 
-    // StringBuilder avoids creating multiple string objects by modifying a single mutable object.In this case, no new object is 
-    // created—StringBuilder modifies the same object, making it faster and memory-efficient.
-    // The append() method of StringBuilder is used to add text or data to the existing string being built.
     @Override
     public String toString() 
     {
@@ -79,17 +72,14 @@ class Order                   // Represents an order placed by a customer.
     }
 }
 
-// This class provides the core functionality of the e-commerce system, including inventory and customer management, 
-// order creation, and data storage.
-
 public class ECommerceSystem 
 {
-    ArrayList<Product> inventory = new ArrayList<>();         // A list of available products
-    ArrayList<Customer> customers = new ArrayList<>();        // A list of registered customers.
-    ArrayList<Order> orderHistory = new ArrayList<>();        //  A list of all placed orders.
+    ArrayList<Product> inventory = new ArrayList<>();        
+    ArrayList<Customer> customers = new ArrayList<>();        
+    ArrayList<Order> orderHistory = new ArrayList<>();        
     Scanner scanner = new Scanner(System.in);
 
-    public void addProduct()                         // Prompts the user to enter product details and adds a new product to the inventory:
+    public void addProduct()                        
     {
         System.out.print("Enter Product ID: ");
         String productId = scanner.nextLine();
@@ -103,14 +93,14 @@ public class ECommerceSystem
         System.out.println("Product added successfully.");
     }
 
-    public void removeProduct()                       // Removes a product from the inventory by matching the product ID:
+    public void removeProduct()                       
     {
         System.out.print("Enter Product ID to remove: ");
         String productId = scanner.nextLine();
         Iterator<Product> iterator = inventory.iterator();
-        while (iterator.hasNext())    // It is used to check whether there are more elements available to iterate over in a collection.
-        {                             // // It returns a boolean value (true or false).
-            Product product = iterator.next();              // Get the next product in the list
+        while (iterator.hasNext())    
+        {                             
+            Product product = iterator.next();             
             if (product.productId.equals(productId)) 
             {
                 iterator.remove(); 
@@ -119,7 +109,7 @@ public class ECommerceSystem
         System.out.println("Product removed successfully.");
     }
 
-    public void addCustomer()                          // Prompts the user to enter customer details and registers the customer in the system:
+    public void addCustomer()                          
     {
         System.out.print("Enter Customer ID: ");
         String customerId = scanner.nextLine();
@@ -129,8 +119,6 @@ public class ECommerceSystem
         customers.add(customer);
         System.out.println("Customer added successfully.");
     }
-    // Prompts the user for a customer ID and validates if the customer exists. Allows the user to add products (by product ID) to the order.
-    // Calculates the total cost and adds the order to the orderHistory list:
 
     public void createOrder() 
     {
@@ -138,40 +126,40 @@ public class ECommerceSystem
         String customerId = scanner.nextLine();
         Customer customer = null;
     
-        for (Customer c : customers)    // Search for customer by customerId
+        for (Customer c : customers)    
         {
             if (c.customerId.equals(customerId)) 
             {
-                customer = c;  // Customer found
+                customer = c;  
                 break;
             }
         }
-        if (customer == null)     // If customer is not found, print message and exit
+        if (customer == null)     
         {
             System.out.println("Customer not found.");
             return;
         }
-        Order order = new Order(customer);   // Create a new order for the found customer
+        Order order = new Order(customer);   
 
-        while (true)    // Keep adding products to the order until user types 'done'
+        while (true)    
         {
             System.out.print("Enter Product ID to add to the order (or type 'done'): ");
             String productId = scanner.nextLine();
     
             if (productId.equalsIgnoreCase("done")) 
             {
-                break;  // Exit loop if user types 'done'
+                break;  
             }
-            Product product = null;       // Search for product by productId
+            Product product = null;       
             for (Product p : inventory) 
             {
                 if (p.productId.equals(productId)) 
                 {
-                    product = p;  // Product found
+                    product = p; 
                     break;
                 }
             }
-            if (product != null)        // If product is found, add it to the order
+            if (product != null)      
             {
                 order.addProduct(product);
                 System.out.println("Product added to order.");
@@ -181,7 +169,7 @@ public class ECommerceSystem
                 System.out.println("Product not found.");
             }
         }
-        orderHistory.add(order);    // Add the order to order history and display it
+        orderHistory.add(order);   
         System.out.println("Order created successfully.");
         System.out.println(order);
     }
@@ -200,11 +188,7 @@ public class ECommerceSystem
             }
         }
     }
-    // saveOrdersToFile() is designed to save the history of all the orders (stored in the orderHistory list) to a file named order_history.txt
-    //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("example.txt"));
-    //bufferedWriter.write("Hello, World!");
-    //bufferedWriter.close(); 
-
+    
     public void saveOrdersToFile() 
     {
         try (BufferedWriter bufferedwriter = new BufferedWriter(new FileWriter("order_history.txt", true))) 
