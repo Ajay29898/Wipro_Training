@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringBootP13Application<SpringBootP13>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "in.sp.main.SpringBootP13Application",
+            "projectName": "SpringBootP13",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
